@@ -25,4 +25,8 @@ public class EmployeeController {
     public String EditEmployee(){
         return "Edit employee";
     }
+    @GetMapping("/delete")
+    public String DeleteEmployee(){
+        return "Delete employee";
+    }
 }
