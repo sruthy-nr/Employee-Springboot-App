@@ -13,4 +13,8 @@ public class EmployeeController {
     public String AddEmployee(){
         return "Add employee";
     }
+    @GetMapping("/view")
+    public String ViewEmployee(){
+        return "View employees";
+    }
 }
