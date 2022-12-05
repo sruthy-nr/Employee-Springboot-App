@@ -17,4 +17,8 @@ public class EmployeeController {
     public String ViewEmployee(){
         return "View employees";
     }
+    @GetMapping("/search")
+    public String SearchEmployee(){
+        return "Search employee";
+    }
 }
