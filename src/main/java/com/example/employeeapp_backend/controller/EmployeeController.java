@@ -5,6 +5,8 @@ import com.example.employeeapp_backend.model.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class EmployeeController {
     @Autowired
@@ -29,8 +31,9 @@ public class EmployeeController {
         return "Employee added successfully";
     }
     @GetMapping("/view")
-    public String ViewEmployee(){
-        return "View employees";
+    public List<Employees> ViewEmployee(){
+
+        return (List<Employees>) dao.findAll();
     }
     @PostMapping("/search")
     public String SearchEmployee(){
