@@ -5,10 +5,13 @@ import com.example.employeeapp_backend.model.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class EmployeeController {
     @Autowired
     private EmployeeDao dao;
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public String Homepage(){
         return "Welcome to my website";
@@ -28,18 +31,28 @@ public class EmployeeController {
         dao.save(e);
         return "Employee added successfully";
     }
+
+    @CrossOrigin(origins = "*")
     @GetMapping("/view")
-    public String ViewEmployee(){
-        return "View employees";
+    public List<Employees> ViewEmployee(){
+
+        return (List<Employees>) dao.findAll();
     }
-    @PostMapping("/search")
-    public String SearchEmployee(){
-        return "Search employee";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/search", consumes = "application/json", produces = "application/json")
+    public List<Employees> SearchEmployee(@RequestBody Employees e){
+
+        String employeecode =String.valueOf(e.getEmployeecode());
+        System.out.println(employeecode);
+        return  (List<Employees>) dao.SearchEmployee(e.getEmployeecode());
+
     }
+    @CrossOrigin(origins = "*")
     @PostMapping("/edit")
     public String EditEmployee(){
         return "Edit employee";
     }
+    @CrossOrigin(origins = "*")
     @PostMapping("/delete")
     public String DeleteEmployee(){
         return "Delete employee";
