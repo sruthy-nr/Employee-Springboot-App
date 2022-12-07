@@ -11,6 +11,7 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeDao dao;
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public String Homepage(){
         return "Welcome to my website";
@@ -30,19 +31,24 @@ public class EmployeeController {
         dao.save(e);
         return "Employee added successfully";
     }
+
+    @CrossOrigin(origins = "*")
     @GetMapping("/view")
     public List<Employees> ViewEmployee(){
 
         return (List<Employees>) dao.findAll();
     }
+    @CrossOrigin(origins = "*")
     @PostMapping("/search")
     public String SearchEmployee(){
         return "Search employee";
     }
+    @CrossOrigin(origins = "*")
     @PostMapping("/edit")
     public String EditEmployee(){
         return "Edit employee";
     }
+    @CrossOrigin(origins = "*")
     @PostMapping("/delete")
     public String DeleteEmployee(){
         return "Delete employee";
